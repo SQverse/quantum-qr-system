@@ -198,6 +198,11 @@ function renderCard(user, baseUrl) {
           </div>
 
           <div class="row">
+            <div class="label">ID</div>
+            <div class="value">: ${user.nomor_induk || '-'}</div>
+          </div>
+
+          <div class="row">
             <div class="label">ALAMAT</div>
             <div class="value">: ${user.alamat || '-'}</div>
           </div>
