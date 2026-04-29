@@ -1,0 +1,25 @@
+{
+  "name": "qr-verification",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "axios": "^1.15.2",
+    "cloudinary": "^2.10.0",
+    "crypto": "^1.0.1",
+    "csv-parser": "^3.2.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "fs": "^0.0.1-security",
+    "mysql2": "^3.22.2",
+    "puppeteer": "^24.42.0",
+    "qrcode": "^1.5.4"
+  }
+}
