@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - LPKQ</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f2f5; margin: 0; padding: 20px; }
+        .container { max-width: 1000px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 20px; }
+        .stats { display: flex; gap: 20px; margin: 20px 0; }
+        .stat-box { background: #e7f3ff; padding: 15px; border-radius: 8px; flex: 1; text-align: center; }
+        .btn { background: #1877f2; color: white; padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 16px; }
+        .btn:disabled { background: #ccc; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
+        th { background: #f8f9fa; }
+        .status-ready { color: #28a745; font-weight: bold; }
+        .status-pending { color: #dc3545; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Panel Kendali Alumni LPKQ</h2>
+            <button class="btn" id="btnGen" onclick="prosesBatch()">🚀 Proses Data Baru</button>
+        </div>
+
+        <div class="stats">
+            <div class="stat-box"><strong>Total Database:</strong> <br> <%= rows.length %></div>
+            <div class="stat-box"><strong>Menunggu Diproses:</strong> <br> <%= pendingCount %></div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nama Alumni</th>
+                    <th>Nomor Induk</th>
+                    <th>Nama Konter</th>
+                    <th>Status Kartu</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% rows.forEach(r => { %>
+                <tr>
+                    <td><%= r.nama %></td>
+                    <td><%= r.nomor_induk %></td>
+                    <td><%= r.nama_konter %></td>
+                    <td>
+                        <span class="<%= r.is_downloaded ? 'status-ready' : 'status-pending' %>">
+                            <%= r.is_downloaded ? '✅ Sudah Dicetak' : '⏳ Belum Diproses' %>
+                        </span>
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        async function prosesBatch() {
+            const btn = document.getElementById('btnGen');
+            btn.disabled = true;
+            btn.innerText = 'Sedang Mencetak PDF...';
+            
+            const response = await fetch('/admin/generate-batch');
+            const resText = await response.text();
+            alert(resText);
+            location.reload();
+        }
+    </script>
+</body>
+</html>

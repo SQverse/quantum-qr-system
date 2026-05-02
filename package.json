@@ -11,11 +11,13 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "archiver": "^7.0.1",
     "axios": "^1.15.2",
     "cloudinary": "^2.10.0",
     "crypto": "^1.0.1",
     "csv-parser": "^3.2.0",
     "dotenv": "^17.4.2",
+    "ejs": "^5.0.2",
     "express": "^5.2.1",
     "fs": "^0.0.1-security",
     "mysql2": "^3.22.2",
